@@ -32,6 +32,7 @@
 		<beans:property name="password" value="1234"></beans:property>
 	</beans:bean>
 	<!-- Mybatis bean 생성 -->
+	<!-- property는 getter constructor-arg는 생성자 -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 		<beans:property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></beans:property>
