@@ -1,13 +1,16 @@
 package mybatis;
 
+// 파라미터 처리를 위한 DTO객체
 public class ParameterDTO
 {
-	private String user_id;
-	private String board_idx;
-	private String search_field;
-	private String search_txt;
-	private int start_num;
-	private int end_num;
+	private String user_id; // 사용자 아이디
+	private String board_idx; // 게시판 일련번호
+	// 검색어 처리를 위한 멤버변수
+	private String search_field; // 검색할 필드명
+	private String search_txt; // 검색어
+	// select구간을 위한 멤버변수
+	private int start_num; // select의 시작
+	private int end_num; // select의 끝
 
 	public int getStart_num()
 	{

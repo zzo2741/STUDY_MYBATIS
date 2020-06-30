@@ -18,6 +18,7 @@ import mybatis.MyBoardDTO;
 import mybatis.MybatisDAOImpl;
 import mybatis.MybatisMemberImpl;
 import mybatis.ParameterDTO;
+import util.EnvFileReader;
 import util.PagingUtil;
 
 @Controller
@@ -47,8 +48,8 @@ public class MybatisController
 		int totalRecordCount = sqlSession.getMapper(MybatisDAOImpl.class).getTotalCount(parameterDTO);
 		System.out.println(totalRecordCount);
 		// 페이지 처리를 위한 설정값
-		int pageSize = 4;
-		int blockPage = 2;
+		int pageSize = Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties", "springBoard.pageSize"));
+		int blockPage = Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties", "springBoard.blockPage"));
 		// 전체 페이지 수 계산
 		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 		// 현재 페이지에 대한 파라미터 처리 및 시작 / 끝의 rownum구하기
@@ -60,7 +61,8 @@ public class MybatisController
 		// 리스트 페이지에 출력할 게시물 가져오기
 		ArrayList<MyBoardDTO> lists = sqlSession.getMapper(MybatisDAOImpl.class).listPage(parameterDTO);
 		// 페이지 번호에 대한 처리
-		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
+		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage,
+				req.getContextPath() + "/mybatis/list.do?" + addQueryString);
 		model.addAttribute("pagingImg", pagingImg);
 		// 레코드에 대한 가공을 위해 for문으로 반복
 		for (MyBoardDTO dto : lists)

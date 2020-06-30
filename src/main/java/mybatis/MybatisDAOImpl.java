@@ -13,7 +13,6 @@ public interface MybatisDAOImpl
 	 * 아래 추상메소드를 통해 컨트롤러는 Mapper의 각 엘리먼트를 호출하게 된다.
 	 */
 	public int getTotalCount(ParameterDTO parameterDTO);
-
 	public ArrayList<MyBoardDTO> listPage(ParameterDTO parameterDTO);
 
 	/*
